@@ -116,3 +116,23 @@ Un **repositorio Git** (sube a GitHub/GitLab y comparte el enlace, o envia un `.
 | **Comunicacion** | Tus notas finales |
 
 No buscamos la solucion "perfecta": buscamos ver como piensas y como escribes codigo. ¡Mucho exito! 🚀
+
+
+
+
+## Notas de Desarrollo
+
+### Decisiones que tomé
+* **Respetar la estructura:** El repositorio ya venía con la lógica armada, así que me acoplé a lo que había y programé mi función ahí sin dañar el flujo del carrito tampoco cambie ningun nombre de las funciones como lo decia el requerimiendo.
+* **Bases de testing:** Respetar y Leer los test para entender que requerimientos se estan pidiendo para que el test pase en verde tuve que arreglar unos errores que iba cometiendo con la sintaxis y para armar las pruebas de la función nueva, usé las bases que traía de mi programa de formación.
+
+### ¿Qué haría distinto con más tiempo?
+* **Aprender más TypeScript:** Como apenas lo estoy empezando a usar y a estudiar, con más tiempo migraría el proyecto para asegurar los datos desde el principio y evitar errores de tipado.
+* **Automatizar las pruebas:** Dejar configurado que los tests corran solos cada vez que se suba código a GitHub.
+* **Validaciones estrictas con Zod:** Implementar esquemas (*schemas*) de Zod para validar la estructura de los datos del carrito, asegurando que los precios y las cantidades sean del tipo correcto antes de hacer cualquier cálculo.
+
+### Bonus Realizado: TDD en el Backend
+Hice la función `aplicarImpuesto(total, porcentaje)` en `cart.js` intentando seguir el ciclo de pruebas:
+1. **Primero el test:** Creé el archivo `tests/extra.test.js` con los casos de prueba (impuesto normal, en cero y decimales). Al correrlo falló porque la función no existía en el carrito .
+2. **Luego el código:** Escribí la lógica de la función, la exporté y logré que la suite pasara con los **34 tests en verde**.
+
