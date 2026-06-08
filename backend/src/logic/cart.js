@@ -105,6 +105,18 @@ function generarResumen(items) {
     .join('\n');
 } 
 
+
+//FUNCION IMPUESTO BONUS 
+function aplicarImpuesto(total, porcentaje) {
+    if (!total || total <= 0) return 0;
+    if (!porcentaje || porcentaje <= 0) return total;
+    
+    const impuesto = total * (porcentaje / 100);
+    return total + impuesto;
+}
+
+
+
 module.exports = {
   crearItem,
   calcularSubtotalItem,
@@ -115,4 +127,5 @@ module.exports = {
   productoMasCaro,
   ordenarPorPrecio,
   generarResumen,
+  aplicarImpuesto
 };
