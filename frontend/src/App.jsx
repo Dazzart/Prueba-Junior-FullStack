@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react'; 
 import CarritoResumen from './components/CarritoResumen';
 
 // Pantalla de demo para ver tu componente en el navegador (npm run dev).

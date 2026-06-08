@@ -13,7 +13,7 @@
 //    - Incluye un boton "Vaciar carrito" que dispare onVaciar al hacer click
 //  Pista: reutiliza formatearPrecio de ../utils/format
 // =========================================================================
-
+import React from 'react'; 
 import { formatearPrecio } from '../utils/format';
 
 export default function CarritoResumen({ items = [], onVaciar }) {
