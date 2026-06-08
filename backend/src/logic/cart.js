@@ -27,47 +27,75 @@ return { nombre, precio, cantidad, categoria };
 
 
 
-
-
 function calcularSubtotalItem(item) {
   // TODO: devuelve precio * cantidad
-  throw new Error('No implementado');
+  return item.precio * item.cantidad;
 }
 
 function calcularTotal(items) {
   // TODO: suma el subtotal de todos los items del array
-  throw new Error('No implementado');
+  if (!items || items.length === 0) return 0;
+  return items.reduce((total, item) => total + calcularSubtotalItem(item), 0);
 }
 
 function aplicarCupon(total, codigo) {
   // TODO: aplica el descuento segun el codigo de cupon
-  throw new Error('No implementado');
+  if (!codigo) return total; // sin codigo no hay descuento
+  switch (codigoClean) {
+    case 'DESCUENTO10':
+      return total * 0.9; // 10% de descuento
+    case 'DESCUENTO20':
+      return total * 0.8; // 20% de descuento
+    default:
+      return total; // sin descuento
+  }
 }
-
+ 
 function filtrarPorCategoria(items, categoria) {
   // TODO: devuelve solo los items que pertenecen a la categoria
-  throw new Error('No implementado');
+  if (!categoria) return []; // sin categoria devuelve todo
+  return items.filter(item => item.categoria === categoria);
 }
 
 function agruparPorCategoria(items) {
-  // TODO: devuelve un objeto { categoria: [items...] }
-  throw new Error('No implementado');
+  if (!items || items.length === 0) return {};
+  
+  return items.reduce((acumulado, item) => {
+    const cat = item.categoria;
+    if (!acumulado[cat]) {
+      acumulado[cat] = [];
+    }
+    acumulado[cat].push(item);
+    return acumulado;
+  }, {});
 }
+
 
 function productoMasCaro(items) {
   // TODO: devuelve el item con mayor precio (o null si el array esta vacio)
-  throw new Error('No implementado');
+if (!items || items.length === 0) return null;
+
+//se compara precio uno a uno para sacar el mayor objeto completo
+return items.reduce((max, item) => (item.precio > max.precio ? item : max), items[0]);
 }
 
 function ordenarPorPrecio(items, orden = 'asc') {
   // TODO: devuelve una NUEVA lista ordenada por precio sin mutar la original
-  throw new Error('No implementado');
+  if (!items) return [];
+  const copiaItems = [...items];
+
+  return copiaItems.sort((a, b) => {
+    return orden === 'asc' ? a.precio - b.precio : b.precio - a.precio;
+  });
 }
 
 function generarResumen(items) {
   // TODO: devuelve un string con una linea por item
-  throw new Error('No implementado');
+  if (!items || items.length === 0) 
+    return 'Carrito vacio';
 }
+
+return items.map(item => `${item.nombre} x${item.cantidad} - $${calcularSubtotalItem(item)}`).join('\n');
 
 module.exports = {
   crearItem,
