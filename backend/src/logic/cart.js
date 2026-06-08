@@ -10,16 +10,16 @@ function crearItem(nombre, precio, cantidad, categoria = 'general') {
   
   //validación de nombre
   if (!nombre || nombre.trim === '') {
-  throw new Error('Nombre obligatorio');
+  throw new Error('El nombre es obligatorio');
 }
 //segun el test el precio no es negativo 
 if (precio < 0) {
-  throw new Error('Precio negativo');
+  throw new Error('El precio no puede ser negativo');
 }
 
 //la cantidad es al menos 1 o da error tambien
 if (cantidad < 1) {
-  throw new Error('Cantidad debe ser al menos 1');
+  throw new Error('La cantidad debe ser al menos 1');
 }
 
 return { nombre, precio, cantidad, categoria };
@@ -41,11 +41,17 @@ function calcularTotal(items) {
 function aplicarCupon(total, codigo) {
   // TODO: aplica el descuento segun el codigo de cupon
   if (!codigo) return total; // sin codigo no hay descuento
+
+  //Covertir todo a mayusculas por requisito del test 
+  const codigoClean = codigo.toUpperCase();
+
   switch (codigoClean) {
-    case 'DESCUENTO10':
+    case 'DESC10':
       return total * 0.9; // 10% de descuento
-    case 'DESCUENTO20':
+    case 'DESC20':
       return total * 0.8; // 20% de descuento
+    case 'MITAD':
+      return total * 0.5; // 50% de descuento
     default:
       return total; // sin descuento
   }
@@ -90,12 +96,14 @@ function ordenarPorPrecio(items, orden = 'asc') {
 }
 
 function generarResumen(items) {
-  // TODO: devuelve un string con una linea por item
-  if (!items || items.length === 0) 
+  if (!items || items.length === 0) {
     return 'Carrito vacio';
-}
+  }
 
-return items.map(item => `${item.nombre} x${item.cantidad} - $${calcularSubtotalItem(item)}`).join('\n');
+  return items
+    .map(item => `${item.nombre} x${item.cantidad} = $${calcularSubtotalItem(item)}`)
+    .join('\n');
+} 
 
 module.exports = {
   crearItem,
