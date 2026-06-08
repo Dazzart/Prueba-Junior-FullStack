@@ -7,8 +7,27 @@
 
 function crearItem(nombre, precio, cantidad, categoria = 'general') {
   // TODO: valida los datos y devuelve un objeto { nombre, precio, cantidad, categoria }
-  throw new Error('No implementado');
+  
+  //validación de nombre
+  if (!nombre || nombre.trim === '') {
+  throw new Error('Nombre obligatorio');
 }
+//segun el test el precio no es negativo 
+if (precio < 0) {
+  throw new Error('Precio negativo');
+}
+
+//la cantidad es al menos 1 o da error tambien
+if (cantidad < 1) {
+  throw new Error('Cantidad debe ser al menos 1');
+}
+
+return { nombre, precio, cantidad, categoria };
+}
+
+
+
+
 
 function calcularSubtotalItem(item) {
   // TODO: devuelve precio * cantidad
