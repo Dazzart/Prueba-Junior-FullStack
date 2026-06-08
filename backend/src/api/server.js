@@ -6,7 +6,8 @@
 // =========================================================================
 
 const express = require('express');
-// const { calcularTotal, aplicarCupon, filtrarPorCategoria } = require('../logic/cart');
+const { calcularTotal, aplicarCupon, filtrarPorCategoria } = require('../logic/cart');
+
 
 const app = express();
 app.use(express.json());
